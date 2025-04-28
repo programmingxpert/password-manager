@@ -1,66 +1,36 @@
-# Secure Password Manager 🔒
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A lightweight, local-first password manager built with Next.js.
+## Getting Started
 
-All your passwords are encrypted with AES-256 (military-grade encryption) and stored locally on your device — no cloud, no servers, and no third parties involved.
+First, run the development server:
 
-## ✨ Features
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-*   **AES-256 Encryption:** All stored passwords are encrypted using industry-standard AES-256.
-*   **Master Password Protection:** Your encryption key is derived using PBKDF2 with 100,000 iterations for maximum security against brute-force attacks.
-*   **Local Storage Only:** Your data never leaves your device; it's stored securely in your browser's local storage.
-*   **Offline-first:** Works entirely without an internet connection after the initial load.
-*   **Simple, Clean UI:** Easy-to-use interface with dark mode support.
-*   **Open Source:** The codebase is fully transparent and available for review.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🔒 How It Works
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-1.  Your **Master Password** is used to generate an encryption key.
-2.  Passwords are encrypted locally using **AES-256**.
-3.  The encryption key is derived via **PBKDF2** (Password-Based Key Derivation Function 2) with **100,000 iterations** to resist brute-force attacks.
-4.  **No passwords, master keys, or sensitive data are ever sent over the internet** — everything remains 100% on your machine.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-**Important Security Notice:** This application does **NOT** save your master password in the browser's autofill or password manager. Any attempt to save your master password using browser features is done **at your own risk** and is **highly discouraged**. Your master password should be kept secure and not stored in ways that could be easily accessed.
+## Learn More
 
-## 🛠️ Built With
+To learn more about Next.js, take a look at the following resources:
 
-*   [**Next.js**](https://nextjs.org/) — React Framework
-*   [**Tailwind CSS**](https://tailwindcss.com/) — For styling
-*   [**Lucide Icons**](https://lucide.dev/) — Icon pack
-*   [**Framer Motion**](https://www.framer.com/motion/) — Smooth animations
-*   [**Radix UI**](https://www.radix-ui.com/) — Accessible UI components
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## 🚀 Getting Started
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-1.  Clone the repository:
+## Deploy on Vercel
 
-    ```bash
-    git clone https://github.com/programmingxpert/password-manager
-    cd password-manager
-    ```
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-2.  Install dependencies:
-
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
-
-3.  Run the development server:
-
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    ```
-
-    Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 📌 Tags
-
-`AES-256` • `Local Storage` • `PBKDF2` • `Master Password` • `Offline Security` • `Encryption` • `Password Manager` • `Data Privacy` • `Next.js`
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
