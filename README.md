@@ -35,8 +35,8 @@ All your passwords are encrypted with AES-256 (military-grade encryption) and st
 1.  Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
+    git clone https://github.com/programmingxpert/password-manager
+    cd password-manager
     ```
 
 2.  Install dependencies:
