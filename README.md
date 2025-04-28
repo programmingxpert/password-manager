@@ -1,5 +1,7 @@
 # Secure Password Manager 🔒
 
+![Screenshot of the application](screenshot.png)
+
 A lightweight, local-first password manager built with Next.js.
 
 All your passwords are encrypted with AES-256 (military-grade encryption) and stored locally on your device — no cloud, no servers, and no third parties involved.
