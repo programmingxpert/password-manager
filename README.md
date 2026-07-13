@@ -1,68 +1,69 @@
-# Secure Password Manager 🔒
+# Secure Local Password Manager
 
-![Screenshot of the application](screenshot.png)
+A lightweight, zero-knowledge, client-side password vault that runs 100% locally in your browser. All credentials are encrypted on your device and are never transmitted to any server.
 
-A lightweight, local-first password manager built with Next.js.
+---
 
-All your passwords are encrypted with AES-256 (military-grade encryption) and stored locally on your device — no cloud, no servers, and no third parties involved.
+## Security Architecture
 
-## ✨ Features
+The application implements a strict zero-trust model using the browser's native **Web Crypto API**:
 
-*   **AES-256 Encryption:** All stored passwords are encrypted using industry-standard AES-256.
-*   **Master Password Protection:** Your encryption key is derived using PBKDF2 with 100,000 iterations for maximum security against brute-force attacks.
-*   **Local Storage Only:** Your data never leaves your device; it's stored securely in your browser's local storage.
-*   **Offline-first:** Works entirely without an internet connection after the initial load.
-*   **Simple, Clean UI:** Easy-to-use interface with dark mode support.
-*   **Open Source:** The codebase is fully transparent and available for review.
+```
+[Master Password] ---> [PBKDF2 Key Derivation (100k+ iterations, Salt)] 
+                               |
+                               v
+                       [AES-GCM 256-bit Key]
+                               |
+                               +---> Encrypts credentials (using unique IV)
+                               |
+                               v
+                     [Encrypted LocalStorage Ciphertext]
+```
 
-## 🔒 How It Works
+### 1. Key Derivation (PBKDF2)
+Your master password is never stored. Instead, it is run through the **PBKDF2** (Password-Based Key Derivation Function 2) using `SHA-256` and a locally generated salt with a high iteration count. This derives a secure 256-bit key used for encryption.
 
-1.  Your **Master Password** is used to generate an encryption key.
-2.  Passwords are encrypted locally using **AES-256**.
-3.  The encryption key is derived via **PBKDF2** (Password-Based Key Derivation Function 2) with **100,000 iterations** to resist brute-force attacks.
-4.  **No passwords, master keys, or sensitive data are ever sent over the internet** — everything remains 100% on your machine.
+### 2. Encryption Standard (AES-GCM)
+All credential payloads are encrypted using **AES-GCM 256-bit** (Advanced Encryption Standard in Galois/Counter Mode). Each encryption operation utilizes a unique initialization vector (IV) to prevent replay attacks and ensure cryptographic confidentiality and integrity.
 
-**Important Security Notice:** This application does **NOT** save your master password in the browser's autofill or password manager. Any attempt to save your master password using browser features is done **at your own risk** and is **highly discouraged**. Your master password should be kept secure and not stored in ways that could be easily accessed.
+### 3. Storage
+The resulting ciphertext, IV, and salt are stored in the browser's `localStorage`. Decryption happens entirely in volatile memory when you unlock the vault with your master password.
 
-## 🛠️ Built With
+---
 
-*   [**Next.js**](https://nextjs.org/) — React Framework
-*   [**Tailwind CSS**](https://tailwindcss.com/) — For styling
-*   [**Lucide Icons**](https://lucide.dev/) — Icon pack
-*   [**Framer Motion**](https://www.framer.com/motion/) — Smooth animations
-*   [**Radix UI**](https://www.radix-ui.com/) — Accessible UI components
+## Key Features
 
-## 🚀 Getting Started
+- **Zero Server Footprint**: No servers, no user accounts, and zero data leaks.
+- **Strong Cryptography**: End-to-end local encryption using browser standards.
+- **Password Generator**: Custom entropy-based local password generator with configurable length and character sets.
+- **Search & Organize**: Live search-as-you-type filtering for username, website, and tags.
+- **Import/Export**: Backup your encrypted vault as a JSON file or export decrypted credentials for migrating to other systems.
+- **Premium Aesthetics**: Elegant, responsive glassmorphism user interface designed with JetBrains Mono and Anybody typography, featuring native dark-mode optimization.
 
-1.  Clone the repository:
+---
 
-    ```bash
-    git clone https://github.com/programmingxpert/password-manager
-    cd password-manager
-    ```
+## Usage & Deployment
 
-2.  Install dependencies:
+### Running Locally
+Since the application consists of a static file interface, you can serve it locally using any static web server:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/programmingxpert/password-manager.git
+   cd password-manager
+   ```
+2. Double-click `index.html` or serve it locally:
+   ```bash
+   npx serve .
+   ```
 
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
+### Hosting on GitHub Pages
+To host this secure vault on your own domain:
+1. Enable GitHub Pages in your repository settings.
+2. Select the `main` branch root as your Pages source.
 
-3.  Run the development server:
+---
 
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    ```
+## Author
 
-    Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 📌 Tags
-
-`AES-256` • `Local Storage` • `PBKDF2` • `Master Password` • `Offline Security` • `Encryption` • `Password Manager` • `Data Privacy` • `Next.js`
+**Satya**  
+GitHub: [programmingxpert](https://github.com/programmingxpert/)
